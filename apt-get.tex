@@ -1,0 +1,11 @@
+In Debian (and Debian-based systems such as Ubuntu), both sudo apt install and sudo apt-get install are used to install packages, but there are some differences between the two commands.
+
+apt is a newer command-line tool that was introduced in Debian 8 (Jessie) as a replacement for the older apt-get and apt-cache commands. While apt is intended to provide a more user-friendly and streamlined experience, it largely performs the same tasks as apt-get.
+
+The main differences between sudo apt install and sudo apt-get install are:
+
+Output formatting: apt is designed to provide more user-friendly output, with progress bars and colored text, while apt-get uses plain text output by default.
+Simpler command syntax: apt combines several functions that are performed by separate commands in apt-get. For example, to install a package with apt, you only need to use the install command and the name of the package, whereas with apt-get, you would need to use the full command sudo apt-get install <package-name>.
+Caching behavior: apt caches package metadata by default, while apt-get does not. This means that if you run apt again after running it once, it will use cached information to speed up the installation process. With apt-get, you need to explicitly run the apt-get update command to update the package metadata cache before running an installation command.
+Dependency handling: apt has more advanced dependency handling than apt-get, which can help to prevent broken dependencies or conflicts between packages.
+Overall, both sudo apt install and sudo apt-get install are valid commands for installing packages in Debian-based systems, but apt is a newer and more user-friendly tool with some additional features.
