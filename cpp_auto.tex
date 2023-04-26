@@ -1,0 +1,26 @@
+Sure, here are three simple examples of auto keyword usage in C++:
+
+1. Using auto to deduce the variable type:
+```cpp
+auto x = 42;  // x is deduced to be of type int
+auto y = 3.14; // y is deduced to be of type double
+```
+
+2. Using auto to simplify long type names:
+```cpp
+std::map<std::string, int> myMap;
+
+// Using auto to simplify the type name
+auto it = myMap.begin(); // it is deduced to be of type std::map<std::string, int>::iterator
+```
+
+3. Using auto in range-based for loop:
+```cpp
+std::vector<int> numbers = {1, 2, 3, 4, 5};
+
+// Using auto in range-based for loop to simplify the type name
+for (auto number : numbers) { // number is deduced to be of type int
+    std::cout << number << std::endl;
+}
+```
+Note that the `auto` keyword is a C++11 feature and it can improve code readability and reduce typing effort.

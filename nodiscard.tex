@@ -1,0 +1,22 @@
+The `[[nodiscard]]` attribute is a C++17 feature that can be used to mark a function, method or operator that returns a value that should not be discarded. This attribute informs the compiler to issue a warning if the return value of a function with the `[[nodiscard]]` attribute is not used. 
+
+The potential problem that `[[nodiscard]]` solves is that it helps prevent the unintended ignoring of the return value of a function. Ignoring the return value of a function can lead to subtle bugs and can make the code harder to maintain and debug. 
+
+For example, consider a function that opens a file and returns a file descriptor or a handle to the opened file. If the return value of the function is not checked, the program may continue execution even if the file was not successfully opened, leading to undefined behavior. 
+
+By using the `[[nodiscard]]` attribute, the function can be marked as requiring the return value to be used, which helps catch potential bugs at compile-time by producing a warning if the return value is ignored. 
+
+Here is an example of how to use `[[nodiscard]]` attribute in C++17:
+
+```cpp
+[[nodiscard]] int calculateSum(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    calculateSum(2, 3); // compiler warning: ignoring return value of function declared with 'nodiscard' attribute
+    return 0;
+}
+```
+
+In this example, if the return value of `calculateSum` function is not used, the compiler will produce a warning, helping catch potential bugs at compile-time.

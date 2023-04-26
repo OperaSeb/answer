@@ -1,0 +1,50 @@
+You can read a file in C++ using the `std::ifstream` class. Here's an example:
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::ifstream file("example.txt"); // open file example.txt
+    if (file.is_open()) { // check if file was opened successfully
+        std::string line;
+        while (std::getline(file, line)) { // read file line by line
+            std::cout << line << std::endl; // print each line to console
+        }
+        file.close(); // close the file
+    }
+    else {
+        std::cout << "Failed to open file." << std::endl;
+    }
+    return 0;
+}
+```
+
+In this example, we create an `std::ifstream` object named `file` and pass the name of the file we want to read ("example.txt") to the constructor. We then check if the file was opened successfully using the `is_open()` method, and if so, we read the file line by line using the `std::getline()` function and store each line in a `std::string` variable named `line`. We then print each line to the console using `std::cout`.
+
+Note that `std::getline()` reads until it encounters a newline character (`'\n'`) or the end of the file. If you want to read the entire contents of the file as a single string, you can use the `std::stringstream` class like this:
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+
+int main() {
+    std::ifstream file("example.txt"); // open file example.txt
+    if (file.is_open()) { // check if file was opened successfully
+        std::stringstream buffer;
+        buffer << file.rdbuf(); // read entire file into stringstream
+        std::string contents = buffer.str(); // convert stringstream to string
+        std::cout << contents << std::endl; // print contents to console
+        file.close(); // close the file
+    }
+    else {
+        std::cout << "Failed to open file." << std::endl;
+    }
+    return 0;
+}
+```
+
+In this example, we create an `std::stringstream` object named `buffer` and read the entire contents of the file into it using the `rdbuf()` method of the `std::ifstream` object. We then convert the `std::stringstream` to a `std::string` using the `str()` method and print it to the console using `std::cout`.

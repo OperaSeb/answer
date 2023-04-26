@@ -1,0 +1,30 @@
+You can modify a file in C++ by opening it in "write" mode using the `std::ofstream` class. Here's an example:
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::fstream file("example.txt", std::ios::in | std::ios::out); // open file in read/write mode
+    if (file.is_open()) { // check if file was opened successfully
+        std::string line;
+        while (std::getline(file, line)) { // read file line by line
+            if (line == "world") { // replace "world" with "planet"
+                file.seekp(-5, std::ios::cur); // move file pointer back 5 characters (to start of "world")
+                file.write("planet", 6); // write "planet" to file
+            }
+        }
+        file.close(); // close the file
+        std::cout << "File modified successfully." << std::endl;
+    }
+    else {
+        std::cout << "Failed to open file." << std::endl;
+    }
+    return 0;
+}
+```
+
+In this example, we create an `std::fstream` object named `file` and pass the name of the file we want to modify ("example.txt") to the constructor, along with the flags `std::ios::in` (to open the file in "input" mode) and `std::ios::out` (to open the file in "output" mode). We then check if the file was opened successfully using the `is_open()` method, and if so, we read the file line by line using the `std::getline()` function and store each line in a `std::string` variable named `line`. If the line contains the word "world", we move the file pointer back 5 characters using `seekp()` and overwrite the word "world" with "planet" using the `write()` method. Finally, we close the file using the `close()` method.
+
+Note that in order to modify a file in-place like this, you need to open it in both "input" and "output" modes using `std::ios::in | std::ios::out` flag. Also, to move the file pointer back to the start of the word "world" we use a negative offset in the `seekp()` method. The `write()` method then overwrites the word "world" with "planet" by writing 6 characters (the length of "planet", including the null terminator) to the file.

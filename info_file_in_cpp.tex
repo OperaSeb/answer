@@ -1,0 +1,28 @@
+You can get information on a file, such as the number of lines, in C++ by reading the file line by line and counting the number of lines as you go. Here's an example:
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::ifstream file("example.txt"); // open file for input
+    if (file.is_open()) { // check if file was opened successfully
+        std::string line;
+        int lineCount = 0;
+        while (std::getline(file, line)) { // read file line by line
+            lineCount++; // increment line count
+        }
+        file.close(); // close the file
+        std::cout << "File has " << lineCount << " lines." << std::endl;
+    }
+    else {
+        std::cout << "Failed to open file." << std::endl;
+    }
+    return 0;
+}
+```
+
+In this example, we create an `std::ifstream` object named `file` and pass the name of the file we want to read ("example.txt") to the constructor. We then check if the file was opened successfully using the `is_open()` method, and if so, we read the file line by line using the `std::getline()` function and store each line in a `std::string` variable named `line`. We also keep track of the number of lines using a counter variable named `lineCount`. Finally, we close the file using the `close()` method and print out the number of lines.
+
+Note that this method assumes that each line in the file is terminated with a newline character (`'\n'`). If the file doesn't end with a newline character, the last line won't be counted. To handle this case, you could add an additional check after the loop to increment `lineCount` if the last line wasn't terminated with a newline character.

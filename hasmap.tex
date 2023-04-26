@@ -1,0 +1,27 @@
+Here is a simple example of using a `std::unordered_map` in C++ to store and retrieve key-value pairs:
+
+```cpp
+#include <iostream>
+#include <unordered_map>
+
+int main() {
+    std::unordered_map<std::string, int> myMap;
+    myMap["foo"] = 42;
+    myMap["bar"] = 123;
+
+    std::cout << "foo: " << myMap["foo"] << std::endl;
+    std::cout << "bar: " << myMap["bar"] << std::endl;
+
+    return 0;
+}
+```
+
+In this example, we create an unordered map `myMap` with `std::string` keys and `int` values. We then insert two key-value pairs into the map using the subscript operator `[]`. Finally, we retrieve and print the values of the two keys using the subscript operator `[]` again.
+
+The output of this program should be:
+```
+foo: 42
+bar: 123
+```
+
+Note that `std::unordered_map` is an implementation of a hash table, which provides fast access to elements based on their keys. The `[]` operator is used to both insert and retrieve elements in the map. If the key is not already present in the map, the `[]` operator inserts a new key-value pair into the map. If the key is already present, the `[]` operator returns a reference to the corresponding value, allowing it to be updated.

@@ -1,0 +1,19 @@
+To move a file in C++, you can use the `std::rename()` function from the `<cstdio>` header. The `std::rename()` function takes two parameters: the current filename (including the path) of the file you want to move, and the new filename (including the path) of the file you want to move it to. Here's an example:
+
+```cpp
+#include <cstdio>
+
+int main() {
+    const char* currentFilename = "example.txt";
+    const char* newFilename = "new_folder/example.txt";
+    if (std::rename(currentFilename, newFilename) == 0) {
+        std::cout << "File moved successfully." << std::endl;
+    }
+    else {
+        std::cout << "Failed to move file." << std::endl;
+    }
+    return 0;
+}
+```
+
+In this example, we pass the current filename (`"example.txt"`) and the new filename (`"new_folder/example.txt"`) to the `std::rename()` function. The function returns 0 if the file was moved successfully, or -1 if an error occurred. We check the return value of the function to determine whether the file was moved successfully or not.
