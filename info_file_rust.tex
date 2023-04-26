@@ -1,0 +1,43 @@
+To get information about a file in Rust, you can use the `std::fs::metadata` function to retrieve the metadata associated with the file, and then extract the relevant information from the metadata.
+
+Here's an example that demonstrates how to get the number of lines in a file:
+
+```rust
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+
+fn main() -> std::io::Result<()> {
+    let file = File::open("example.txt")?;
+    let reader = BufReader::new(file);
+
+    let mut line_count = 0;
+    for _ in reader.lines() {
+        line_count += 1;
+    }
+
+    println!("Number of lines: {}", line_count);
+
+    Ok(())
+}
+```
+
+In this example, we open the file named "example.txt" using `File::open("example.txt")?`. We then create a `BufReader` instance from the file and use a loop that reads each line of the file using the `lines()` method and increments the `line_count` variable for each line. Finally, we print the number of lines using `println!("Number of lines: {}", line_count);`.
+
+Alternatively, you can also use the `std::fs::metadata` function to get the size of the file in bytes and divide it by the average line length to estimate the number of lines. Here's an example:
+
+```rust
+use std::fs;
+
+fn main() -> std::io::Result<()> {
+    let metadata = fs::metadata("example.txt")?;
+    let file_size = metadata.len();
+    let avg_line_length = 50; // assume an average line length of 50 characters
+    let line_count = file_size / avg_line_length;
+
+    println!("Number of lines: {}", line_count);
+
+    Ok(())
+}
+```
+
+In this example, we use `fs::metadata("example.txt")?` to retrieve the metadata associated with the file "example.txt". We then extract the size of the file in bytes using `metadata.len()` and assume an average line length of 50 characters. We then divide the file size by the average line length to estimate the number of lines in the file. Finally, we print the number of lines using `println!("Number of lines: {}", line_count);`.

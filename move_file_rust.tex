@@ -1,0 +1,14 @@
+To move a file in Rust, you can use the `std::fs::rename` function from the standard library. Here's an example:
+
+```rust
+use std::fs;
+
+fn main() -> std::io::Result<()> {
+    fs::rename("old_file.txt", "new_file.txt")?;
+    Ok(())
+}
+```
+
+In this example, we use the `fs::rename` function to rename the file "old_file.txt" to "new_file.txt". If the operation succeeds, the function returns `Ok(())`. If the operation fails, the function returns an `Err` value containing the error information.
+
+Note that the `fs::rename` function also supports moving a file between directories by specifying the full paths of the old and new locations.

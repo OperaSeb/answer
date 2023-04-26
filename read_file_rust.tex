@@ -1,0 +1,23 @@
+You can read a file in Rust using the `File` type and the `BufReader` type from the standard library. Here's an example:
+
+```rust
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+
+fn main() -> std::io::Result<()> {
+    let file = File::open("example.txt")?;
+    let reader = BufReader::new(file);
+
+    for line in reader.lines() {
+        println!("{}", line?);
+    }
+
+    Ok(())
+}
+```
+
+In this example, we open the file named "example.txt" using the `File::open` method. The method returns a `Result<File>` that can be used to handle any errors that occur during the file opening. We then create a `BufReader` instance from the file, which allows us to read the file line-by-line using the `lines` method. 
+
+We use a `for` loop to iterate over the lines returned by `lines()`, and we print each line using `println!()`. The `?` operator is used to propagate any errors that occur during the line reading process.
+
+Finally, we return an `Ok(())` value to indicate that the operation completed successfully. If an error occurred during the file opening or reading, we would return a `Err` value containing the error information.

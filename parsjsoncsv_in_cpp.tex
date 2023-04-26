@@ -1,0 +1,87 @@
+Sure, here are examples of parsing command-line arguments, JSON data, and CSV data in C++:
+
+1. Parsing command-line arguments:
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+int main(int argc, char* argv[]) {
+    // parse command-line arguments
+    std::vector<std::string> args;
+    for (int i = 1; i < argc; i++) {
+        args.push_back(argv[i]);
+    }
+
+    // print parsed arguments
+    std::cout << "Parsed arguments:" << std::endl;
+    for (const auto& arg : args) {
+        std::cout << arg << std::endl;
+    }
+
+    return 0;
+}
+```
+
+In this example, we use the `argc` and `argv` parameters of the `main()` function to get the command-line arguments passed to the program. We loop through the arguments starting from index 1 (since the first argument is the name of the program itself) and add them to a `std::vector<std::string>` object named `args`. We then print out the parsed arguments.
+
+2. Parsing JSON data:
+```cpp
+#include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
+
+int main() {
+    // read JSON data from file
+    std::ifstream file("example.json");
+    nlohmann::json data;
+    file >> data;
+
+    // print parsed data
+    std::cout << "Parsed data:" << std::endl;
+    std::cout << "Name: " << data["name"] << std::endl;
+    std::cout << "Age: " << data["age"] << std::endl;
+    std::cout << "Email: " << data["email"] << std::endl;
+
+    return 0;
+}
+```
+
+In this example, we use the `nlohmann::json` library to parse JSON data from a file. We create an `std::ifstream` object named `file` and pass the name of the file we want to read ("example.json") to the constructor. We then create a `nlohmann::json` object named `data` and read the JSON data from the file using the `>>` operator. We then print out the parsed data.
+
+3. Parsing CSV data:
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+int main() {
+    // read CSV data from file
+    std::ifstream file("example.csv");
+    std::vector<std::vector<std::string>> data;
+    std::string line;
+    while (std::getline(file, line)) {
+        std::vector<std::string> row;
+        std::string cell;
+        std::stringstream lineStream(line);
+        while (std::getline(lineStream, cell, ',')) {
+            row.push_back(cell);
+        }
+        data.push_back(row);
+    }
+
+    // print parsed data
+    std::cout << "Parsed data:" << std::endl;
+    for (const auto& row : data) {
+        for (const auto& cell : row) {
+            std::cout << cell << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
+```
+
+In this example, we read CSV data from a file using the `std::ifstream` class and parse it into a `std::vector<std::vector<std::string>>` object named `data`. We use `std::getline()` to read each line of the file, and then use a `std::stringstream` object to parse each line into cells separated by commas. We store each row of cells in a `std::vector<std::string>` object named `row`, and then

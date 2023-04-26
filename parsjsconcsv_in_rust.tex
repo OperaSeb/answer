@@ -1,0 +1,57 @@
+Sure, here are some examples of parsing different file formats (CML, JSON, and CSV) in Rust:
+
+Parsing CML:
+
+```rust
+use cml::parser::parse;
+use std::fs;
+
+fn main() {
+    let content = fs::read_to_string("file.cml").unwrap();
+    let result = parse(&content);
+    println!("{:#?}", result);
+}
+```
+
+Here, we're using the `cml` crate to parse a CML file. We first read the contents of the file into a string, then pass that string to the `parse` function, which returns a `Result` containing the parsed CML data. We then print the result using the `println!` macro.
+
+Parsing JSON:
+
+```rust
+use serde::{Deserialize, Serialize};
+use std::fs;
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Person {
+    name: String,
+    age: u32,
+}
+
+fn main() {
+    let content = fs::read_to_string("file.json").unwrap();
+    let result: Vec<Person> = serde_json::from_str(&content).unwrap();
+    println!("{:#?}", result);
+}
+```
+
+Here, we're using the `serde_json` crate to parse a JSON file. We first read the contents of the file into a string, then use `serde_json::from_str` to parse the JSON data into a `Vec<Person>` struct. We then print the result using the `println!` macro.
+
+Parsing CSV:
+
+```rust
+use csv::ReaderBuilder;
+use std::fs;
+
+fn main() {
+    let file = fs::File::open("file.csv").unwrap();
+    let mut csv_reader = ReaderBuilder::new()
+        .has_headers(true)
+        .from_reader(file);
+    for result in csv_reader.records() {
+        let record = result.unwrap();
+        println!("{:?}", record);
+    }
+}
+```
+
+Here, we're using the `csv` crate to parse a CSV file. We first open the file using `fs::File::open`, then pass the file to a `Reader` instance created using `ReaderBuilder`. We set `has_headers` to `true` to indicate that the CSV file has a header row, and then iterate over the records using the `records` method. For each record, we print it using the `println!` macro.

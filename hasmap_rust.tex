@@ -1,0 +1,26 @@
+Sure, here is a simple example of using a `HashMap` in Rust:
+
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let mut map = HashMap::new();
+
+    // insert some key-value pairs into the map
+    map.insert("one", 1);
+    map.insert("two", 2);
+    map.insert("three", 3);
+
+    // access values by key
+    println!("The value of 'one' is: {:?}", map.get("one"));
+    println!("The value of 'two' is: {:?}", map.get("two"));
+    println!("The value of 'three' is: {:?}", map.get("three"));
+
+    // iterate over the key-value pairs
+    for (key, value) in &map {
+        println!("{}: {}", key, value);
+    }
+}
+```
+
+In this example, we create a new `HashMap` using the `HashMap::new()` method. We then insert some key-value pairs using the `insert` method, and we can access the values by their keys using the `get` method. Finally, we iterate over the key-value pairs using a `for` loop and the `iter` method.
