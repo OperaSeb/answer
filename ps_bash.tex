@@ -1,9 +1,0 @@
-	This is an if statement in a bash script that sets the value of the PS1 variable based on the value of the color_prompt variable.
-
-Here's how the statement works:
-
-if [ "$color_prompt" = yes ]; then: This is the start of the if statement. It checks whether the color_prompt variable is set to the string "yes". If it is, the following block of code will be executed. Note that the [ and ] characters are shell built-in commands that test conditions, and they must be surrounded by spaces.
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ': If color_prompt is "yes", this line sets the value of the PS1 variable to a string that contains several escape sequences to control the appearance of the command prompt. The escape sequences are enclosed in \[\] to indicate that they should not be counted when calculating the length of the prompt. The prompt includes the username (\u), hostname (\h), current working directory (\w), and a $ character to indicate the end of the prompt.
-else: This is the start of the else block, which will be executed if color_prompt is not "yes".
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ': If color_prompt is not "yes", this line sets the value of PS1 to a simpler string that includes the username, hostname, current working directory, and $ character, but does not use any escape sequences to change the appearance of the prompt.
-Overall, this statement is used to set the value of the PS1 variable based on the value of color_prompt. If color_prompt is "yes", the prompt will include escape sequences to display the username, hostname, and working directory in color. Otherwise, the prompt will display these items in plain text.

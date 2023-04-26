@@ -1,7 +1,0 @@
-In Bash, the difference between path="~/code/path" and path=~/code/path is that the tilde (~) character is treated differently depending on whether it is enclosed in quotes or not.
-
-When the tilde is enclosed in quotes (e.g., "~/code/path"), it is treated as a literal character and not expanded to the user's home directory path. Therefore, path will contain the literal string "~/code/path".
-
-On the other hand, when the tilde is not enclosed in quotes (e.g., ~/code/path), it is treated as a special character that is expanded to the current user's home directory path. Therefore, path will contain the absolute path to the directory /home/<username>/code/path, where <username> is the current user's username.
-
-In summary, if you want to use the tilde character to represent the user's home directory path in Bash, you should not enclose it in quotes.
