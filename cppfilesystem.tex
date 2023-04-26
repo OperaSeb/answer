@@ -1,0 +1,41 @@
+Sure, here is an example of using the `std::filesystem::path` class in C++:
+
+```
+#include <iostream>
+#include <filesystem>
+
+int main() {
+    std::filesystem::path path1("/home/user/Documents");
+    std::filesystem::path path2("file.txt");
+
+    // Combine path1 and path2 using the '/' operator
+    std::filesystem::path combinedPath = path1 / path2;
+
+    // Output the combined path
+    std::cout << "Combined path: " << combinedPath << std::endl;
+
+    // Output the filename component of the combined path
+    std::cout << "Filename: " << combinedPath.filename() << std::endl;
+
+    // Output the parent path of the combined path
+    std::cout << "Parent path: " << combinedPath.parent_path() << std::endl;
+
+    // Check if the combined path exists
+    if (std::filesystem::exists(combinedPath)) {
+        std::cout << "The combined path exists." << std::endl;
+    }
+    else {
+        std::cout << "The combined path does not exist." << std::endl;
+    }
+
+    return 0;
+}
+```
+
+In this example, we first create two `std::filesystem::path` objects, `path1` and `path2`, representing a directory and a file respectively. We then combine these paths using the `operator/` overload to create a new path `combinedPath`. 
+
+We then output the filename component and the parent path of the `combinedPath` using the `filename()` and `parent_path()` member functions respectively.
+
+Finally, we check if the `combinedPath` exists using the `std::filesystem::exists()` function.
+
+Note that the `std::filesystem` library was introduced in C++17 and may not be available on older compilers. Also, the behavior of some member functions may vary depending on the operating system and file system being used.
